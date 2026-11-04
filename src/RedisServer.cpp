@@ -86,7 +86,7 @@ void RedisServer::run() {
             char buffer[1024];
             while (true) {
                 memset(buffer, 0, sizeof(buffer));
-                int bytes = recv(client_socket, buffer, sizeof(buffer) - 1, 0);
+                int bytes = recv(client_socket, buffer, sizeof buffer) -1, 0);
                 if (bytes <= 0) break;
                 std::string request(buffer, bytes);
                 std::string response = cmdHandler.processCommand(request);
